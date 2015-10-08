@@ -1,0 +1,96 @@
+// contains code from Foundation by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+/*
+Simple utility for converting pixels to ems
+*/
+$gloo-baseFontSize: 15px !default;
+// This is the default html and body font-size for the base rem value.
+$rem-base: 16px !default;
+
+@function gloo-utils-toEm($target, $context: $gloo-baseFontSize) {
+  @if $target == 0 { @return 0 }
+  @return $target / $context + 0em;
+}
+
+
+
+// IMPORT ONCE
+// We use this to prevent styles from being loaded multiple times for components that rely on other components.
+$modules: () !default;
+
+// STRIP UNIT
+// It strips the unit of measure and returns it
+@function gloo-utils-strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+
+@function gloo-utils-convert-to-rem($value, $base-value: $rem-base) {
+  $value: gloo-utils-strip-unit($value) / gloo-utils-strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  @return $value;
+}
+
+// RANGES
+// We use these functions to define ranges for various things, like media queries.
+@function gloo-utils-lower-bound($range) {
+  @if length($range) <= 0 {
+    @return 0;
+  }
+  @return nth($range, 1);
+}
+
+@function gloo-utils-upper-bound($range) {
+  @if length($range) < 2 {
+    @return 999999999999;
+  }
+  @return nth($range, 2);
+}
+
+
+@function gloo-utils-rem-calc($values, $base-value: $rem-base) {
+  $max: length($values);
+
+  @if $max == 1 { @return gloo-utils-convert-to-rem(nth($values, 1), $base-value); }
+
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, gloo-utils-convert-to-rem(nth($values, $i), $base-value));
+  }
+  @return $remValues;
+}
+
+// cross browser border radius
+@mixin gloo-utils-borderRadius($value){
+  -webkit-border-radius:$value;
+  -moz-border-radius:$value;
+  border-radius:$value;
+}
+
+// cross browser transform
+@mixin gloo-utils-transform($effect){
+  -webkit-transform: $effect;
+  -ms-transform: $effect;
+  transform: $effect;
+}
+
+// cross browser transition
+@mixin gloo-utils-transition($property, $duration, $function:ease, $delay:0s){
+  -webkit-transition: $property $duration $function $delay;
+  -moz-transition: $property $duration $function $delay;
+  -o-transition: $property $duration $function $delay;
+  transition: $property $duration $function $delay;
+}
+
+@mixin gloo-utils-exports($name) {
+  // Import from global scope
+  $modules: $modules;
+  // Check if a module is already on the list
+  $module_index: index($modules, $name);
+  @if (($module_index == null) or ($module_index == false)) {
+    $modules: append($modules, $name);
+    @content;
+  }
+}

@@ -1,0 +1,17 @@
+/*
+  A basic set of rules for websites - includes responsiveness, vertical rhythm, basic typography definitions, and other sanity you
+  shouldn't be living without.
+*/
+
+/*
+dependencies : gloo-utils,
+*/
+
+$gloo-grid-columnGutter: 1.2em !default;
+
+$gloo-verticalRhythm: 1em !default;
+
+// Media Queries
+$gloo-responsive-smallScreen: 768px !default;
+$gloo-responsive-mediumScreen: 1280px !default;
+$gloo-responsive-largeScreen: 1440px !default;

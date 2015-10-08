@@ -1,0 +1,9 @@
+@import 'gloo-utils';
+
+$gloo-responsive-screen: "only screen" !default;
+$gloo-responsive-belowsmall: "only screen and (max-width: #{$gloo-responsive-smallScreen})" !default;
+$gloo-responsive-small: "only screen and (min-width: #{$gloo-responsive-smallScreen})" !default;
+$gloo-responsive-medium: "only screen and (min-width:#{$gloo-responsive-mediumScreen})" !default;
+$gloo-responsive-large: "only screen and (min-width:#{$gloo-responsive-largeScreen})" !default;
+$gloo-responsive-landscape: "only screen and (orientation: landscape)" !default;
+$gloo-responsive-portrait: "only screen and (orientation: portrait)" !default;
