@@ -62,12 +62,14 @@ $modules: () !default;
   @return $remValues;
 }
 
+
 // cross browser border radius
 @mixin gloo-utils-borderRadius($value){
   -webkit-border-radius:$value;
   -moz-border-radius:$value;
   border-radius:$value;
 }
+
 
 // cross browser transform
 @mixin gloo-utils-transform($effect){
@@ -76,6 +78,7 @@ $modules: () !default;
   transform: $effect;
 }
 
+
 // cross browser transition
 @mixin gloo-utils-transition($property, $duration, $function:ease, $delay:0s){
   -webkit-transition: $property $duration $function $delay;
@@ -83,6 +86,16 @@ $modules: () !default;
   -o-transition: $property $duration $function $delay;
   transition: $property $duration $function $delay;
 }
+
+
+// cross browser background size
+@mixin gloo-utils-backgroundSize($size){
+    -webkit-background-size: $size;
+    -moz-background-size: $size;
+    -o-background-size: $size;
+    background-size: $size;
+}
+
 
 @mixin gloo-utils-exports($name) {
   // Import from global scope
